@@ -1,2 +1,5 @@
 specification.md
 .venv
+.claude
+data/
+.pytest_cache
