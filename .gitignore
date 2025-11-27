@@ -3,3 +3,21 @@ specification.md
 .claude
 /data/
 .pytest_cache
+
+# Python build artifacts
+*.egg-info/
+dist/
+build/
+*.pyc
+__pycache__/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
