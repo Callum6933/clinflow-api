@@ -3,6 +3,7 @@ import pandas as pd
 from pathlib import Path
 import os
 
+
 def download_dataset():
     # define download path
     current_file = Path(__file__)
@@ -14,16 +15,17 @@ def download_dataset():
         print(f"✅ Dataset already exists at {path}")
         return
 
-    # fetch dataset 
-    heart_disease = fetch_ucirepo(name="Heart Disease") 
-    
-    # data (as pandas dataframe) 
+    # fetch dataset
+    heart_disease = fetch_ucirepo(name="Heart Disease")
+
+    # data (as pandas dataframe)
     df = heart_disease.data.original
     df.to_csv(path_or_buf=path)
-    
+
 
 def main():
     download_dataset()
+
 
 if __name__ == "__main__":
     main()
