@@ -1,8 +1,12 @@
+from clinflow.logging_utils import get_logger
 from pathlib import Path
 import pandas as pd
 
 
 def load_raw_data(filepath=None):
+    # configure logger
+    logger = get_logger(__name__)
+    
     # define path to dataset
     if filepath is None:
         current_file = Path(__file__)
@@ -15,6 +19,7 @@ def load_raw_data(filepath=None):
 
     # load dataset into pandas dataframe
     df = pd.read_csv(path)
+    logger.info("Dataset successfully loaded")
     return df
 
 

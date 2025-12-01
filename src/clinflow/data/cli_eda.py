@@ -1,8 +1,10 @@
 from clinflow.data.load import load_raw_data
+from clinflow.logging_utils import get_logger
 import argparse
 
 
 def parse_cli_args():
+    # parse cli input
     parser = argparse.ArgumentParser()
     parser.add_argument("--path", help="Path to the dataset CSV file", default=None)
     args = parser.parse_args()
@@ -10,34 +12,37 @@ def parse_cli_args():
 
 
 def print_metrics(path):
+    # configure logger
+    logger = get_logger(__name__)
+    
     # records/features count
     df = load_raw_data(path)
-    print(f"Records: {df.shape[0]}")
-    print(f"Features: {df.shape[1]}")
+    logger.info(f"Records: {df.shape[0]}")
+    logger.info(f"Features: {df.shape[1]}")
 
     # columns with (and no. of) missing data
-    print(f"Missing values:\n{df.isnull().sum()}")
+    logger.info(f"Missing values:\n{df.isnull().sum()}")
 
     # target distribution
     # - number of individuals with and without heart disease
     target_distribution = df["num"].value_counts()
-    print(f"Without heart disease: {target_distribution[0]}")
-    print(f"With heart disease: {target_distribution[1:].sum()}")
+    logger.info(f"Without heart disease: {target_distribution[0]}")
+    logger.info(f"With heart disease: {target_distribution[1:].sum()}")
 
     # - percentage of individuals with each severity of heart disease
-    print(
+    logger.info(
         f"Percentages:\nNo heart disease: {round((target_distribution[0]/target_distribution.sum()), 2) * 100}%"
     )
-    print(
+    logger.info(
         f"Severity 1: {round((target_distribution[1]/target_distribution.sum()), 2) * 100}%"
     )
-    print(
+    logger.info(
         f"Severity 2: {round((target_distribution[2]/target_distribution.sum()), 2) * 100}%"
     )
-    print(
+    logger.info(
         f"Severity 3: {round((target_distribution[3]/target_distribution.sum()), 2) * 100}%"
     )
-    print(
+    logger.info(
         f"Severity 4: {round((target_distribution[4]/target_distribution.sum()), 2) * 100}%"
     )
 
