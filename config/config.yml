@@ -5,3 +5,20 @@ missing_value_strategy: "drop"
 categorical_column_names: ["sex", "cp", "restecg", "thal"]
 numerical_column_names: ["age", "trestbps", "chol", "fbs", "thalach", "ca", "num",]
 
+reasonable_ranges:
+  age:
+    min: 0
+    max: 120
+  chol:
+    min: 60
+    max: 600
+  thalach:
+    min: 30
+    max: 300
+  trestbps:
+    min: 30
+    max: 300
+
+minimum_rows: 50
+
+
