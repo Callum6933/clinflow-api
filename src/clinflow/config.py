@@ -1,6 +1,7 @@
 import yaml
 from pathlib import Path
 
+
 def load_config(filepath=None):
     if filepath is None:
         current_file = Path(__file__)
@@ -8,9 +9,9 @@ def load_config(filepath=None):
         path = root / "config" / "config.yml"
     else:
         path = Path(filepath)
-    
+
     with open(path) as f:
-        return(yaml.safe_load(f))
+        return yaml.safe_load(f)
 
 
 def main():

@@ -6,7 +6,7 @@ import pandas as pd
 def load_raw_data(filepath=None):
     # configure logger
     logger = get_logger(__name__)
-    
+
     # define path to dataset
     if filepath is None:
         current_file = Path(__file__)

@@ -1,3 +1,7 @@
 path_to_raw_data: "data/raw/heart_disease_dataset.csv"
 path_to_processed_data: "data/processed"
 target_column_name: "num"
+missing_value_strategy: "drop"
+categorical_column_names: ["sex", "cp", "restecg", "thal"]
+numerical_column_names: ["age", "trestbps", "chol", "fbs", "thalach", "ca", "num",]
+
