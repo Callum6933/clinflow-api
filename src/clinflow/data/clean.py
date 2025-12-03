@@ -70,11 +70,11 @@ def validate_data(df, cfg):
         df["target"]
     except KeyError:
         raise ValueError("The column 'target' does not exist")
-    
+
     for row in df["target"]:
         if row != 0 and row != 1:
             raise ValueError("The column 'target' is not binary")
-    
+
     logger.info("Target column check passed")
 
     # check for reasonable ranges

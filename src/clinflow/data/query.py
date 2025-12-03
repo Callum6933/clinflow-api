@@ -20,6 +20,7 @@ QUERY_SPECS = {
     },
 }
 
+
 def query_patients(preset):
     """run a preset query and return results."""
     logger.info(f"Querying preset: '{preset}'")
@@ -35,6 +36,7 @@ def query_patients(preset):
     logger.info(f"Query returned {len(results)} rows")
     con.close()
     return results
+
 
 def build_where_clause(filter_spec):
     """build a SQL WHERE clause"""
@@ -52,8 +54,10 @@ def build_where_clause(filter_spec):
             params.append(rules["equals"])
     return " AND ".join(conditions), params
 
+
 def main():
     import argparse
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--preset", default="high_risk_seniors")
     parser.add_argument("--list-presets", action="store_true")
