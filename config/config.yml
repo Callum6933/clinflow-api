@@ -4,6 +4,7 @@ target_column_name: "num"
 missing_value_strategy: "drop"
 categorical_column_names: ["sex", "cp", "restecg", "thal"]
 numerical_column_names: ["age", "trestbps", "chol", "fbs", "thalach", "ca", "num",]
+all_column_names: ["age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "slope", "ca", "thal", "num", "target"]
 
 reasonable_ranges:
   age:
