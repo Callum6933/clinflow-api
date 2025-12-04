@@ -4,7 +4,7 @@ Clinflow API is a containerised, tested Python service that ingests clinical tab
 
 ## Current functionality:
 - Fetches/downloads UCI heart disease dataset
-- Built in functions for
+- Built in functions for:
     - Loading raw data
     - Cleaning raw data, and validating this cleaned data
     - Conversion to an sqlite database
@@ -19,7 +19,7 @@ This project is still a work in progress. Currently about 15 days/halfway into t
 ## Setup and Installation
 - Environment/dependencies are configured via pyproject.toml. To set up:
   ```
-  git clone <https://github.com/Callum6933/clinflow-api.git>
+  git clone https://github.com/Callum6933/clinflow-api.git
   cd clinflow-api
   python -m venv venv
   source venv/bin/activate  # On Windows: venv\Scripts\activate
