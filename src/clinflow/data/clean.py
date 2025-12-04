@@ -12,7 +12,7 @@ def clean_data(df, cfg):
 
     # handle missing values
     if cfg["missing_value_strategy"] == "drop":
-        df = df.dropna()
+        df = df.dropna().copy()
 
     # type conversions (str -> num)
     for name in cfg["numerical_column_names"]:
