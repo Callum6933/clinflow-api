@@ -1,8 +1,8 @@
 from clinflow.data.load import load_raw_data
 from clinflow.logging_utils import get_logger
+from clinflow.config import load_config
 from pathlib import Path
 import sqlite3
-import yaml
 
 
 def write_to_SQL_db():
@@ -10,8 +10,7 @@ def write_to_SQL_db():
     logger = get_logger(__name__)
 
     # configure path to clean.csv
-    with open("config/config.yml", "r") as f:
-        cfg = yaml.safe_load(f)
+    cfg = load_config()
 
     path_to_clean_data = cfg["path_to_processed_data"]
 

@@ -1,7 +1,7 @@
 from clinflow.data.load import load_raw_data
 from clinflow.logging_utils import get_logger
+from clinflow.config import load_config
 import pandas as pd
-import yaml
 
 
 def clean_data(df, cfg):
@@ -106,12 +106,7 @@ def main():
     dataset = load_raw_data()
 
     # get cfg
-    try:
-        with open("config/config.yml", "r") as f:
-            configuration = yaml.safe_load(f)
-    except FileNotFoundError:
-        logger.error(f"Couldn't find file at config/config.yml")
-        raise
+    configuration = load_config()
 
     # log successful finding
     logger.info("Configuration parameters found")
