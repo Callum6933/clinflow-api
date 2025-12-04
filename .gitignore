@@ -1,7 +1,9 @@
 specification.md
 .venv
 .claude
-/data/
+data/*.csv
+data/*.db
+data/**/*.csv
 .pytest_cache
 
 # Python build artifacts
