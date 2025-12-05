@@ -1,4 +1,4 @@
-from clinflow.data.load import load_raw_data
+from clinflow.data.load import load_dataset
 from clinflow.logging_utils import get_logger
 import argparse
 import pandas as pd
@@ -17,7 +17,7 @@ def print_metrics(path=None, df=None):
     logger = get_logger(__name__)
 
     # records/features count
-    df = load_raw_data(path)
+    df = load_dataset(path)
     logger.info(f"Records: {df.shape[0]}")
     logger.info(f"Features: {df.shape[1]}")
 

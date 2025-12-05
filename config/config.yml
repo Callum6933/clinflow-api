@@ -1,10 +1,20 @@
-path_to_raw_data: "data/raw/heart_disease_dataset.csv"
-path_to_processed_data: "data/processed"
+paths:
+  raw_data: 
+    folder: "data/raw/"
+    file: "heart_disease_dataset.csv"
+  processed_data: 
+    folder: "data/processed/"
+    file: "clean.csv"
+  database_path:
+    folder: "data/"
+    file: "clinflow.db"
+
 target_column_name: "num"
 missing_value_strategy: "drop"
 categorical_column_names: ["sex", "cp", "restecg", "thal"]
 numerical_column_names: ["age", "trestbps", "chol", "fbs", "thalach", "ca", "num",]
-all_column_names: ["age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "slope", "ca", "thal", "num", "target"]
+raw_all_column_names: ["age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "slope", "ca", "thal", "num"]
+clean_all_column_names: ["age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "slope", "ca", "thal", "num", "target"]
 
 reasonable_ranges:
   age:

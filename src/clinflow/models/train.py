@@ -4,7 +4,9 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, roc_auc_score
 from clinflow.config import load_config
 from clinflow.logging_utils import get_logger
-from clinflow.data.load import load_raw_data
+from clinflow.data.load import load_dataset
+from pathlib import Path
+
 
 def train_model(df, cfg):
     # configure logging
@@ -12,10 +14,12 @@ def train_model(df, cfg):
 
     # create X (features) and y (target)
     y = df["target"]
-    X = df.drop(["target", "num"], axis = 1)
+    X = df.drop(["target", "num"], axis=1)
 
     # create train/test split
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42
+    )
     logger.info("Test split created")
 
     # standardise/scale and transform
@@ -31,8 +35,8 @@ def train_model(df, cfg):
 
     # predict
     y_pred = clf.predict(X_test)
-    accuracy = accuracy_score(y_test, y_pred)     # accuracy score
-    roc_auc = roc_auc_score(y_test, y_pred)       # roc score
+    accuracy = accuracy_score(y_test, y_pred)  # accuracy score
+    roc_auc = roc_auc_score(y_test, y_pred)  # roc score
     logger.info("Accuracy scores calculated")
 
     # create dict with model, scaler and metrics
@@ -45,6 +49,7 @@ def train_model(df, cfg):
 
     return model
 
+
 def main():
     # configure logger
     logger = get_logger(__name__)
@@ -53,7 +58,11 @@ def main():
     cfg = load_config()
 
     # load clean dataset
-    df = load_raw_data(f"{cfg['path_to_processed_data']}/clean.csv")
+    clean_data_path = (
+        Path(cfg["paths"]["processed_data"]["folder"])
+        / cfg["paths"]["processed_data"]["file"]
+    )
+    df = load_dataset(clean_data_path)
 
     # train model
     model = train_model(df, cfg)
@@ -62,7 +71,6 @@ def main():
     # print metrics
     print(f"Accuracy score: {model['accuracy_score']}")
     print(f"AUC score: {model['roc_auc_score']}")
-    
 
 
 if __name__ == "__main__":

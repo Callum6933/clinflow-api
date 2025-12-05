@@ -6,7 +6,7 @@ from clinflow.config import load_config
 def test_csv_exists():
     # test if clean.csv exists after running the pipeline
     cfg = load_config()
-    path = Path(f"{cfg['path_to_processed_data']}/clean.csv")
+    path = Path(cfg["paths"]["processed_data"]["folder"]) / cfg["paths"]["processed_data"]["file"]
 
     run_data_pipeline()
     if path.exists() == False:
@@ -15,7 +15,7 @@ def test_csv_exists():
 def test_csv_valid():
     # check if the cleaned csv has more than 0 rows
     cfg = load_config()
-    path = Path(f"{cfg['path_to_processed_data']}/clean.csv")
+    path = Path(cfg["paths"]["processed_data"]["folder"]) / cfg["paths"]["processed_data"]["file"]
 
     run_data_pipeline()
 
@@ -23,7 +23,7 @@ def test_csv_valid():
         df = pd.read_csv(f)
 
     if len(df) < 1:
-        raise ValueError(f"File: {path}/clean.csv has too few rows ({len(df)})")
+        raise ValueError(f"File: {path} has too few rows ({len(df)})")
     
 def test_db_exists():
     # check if clinflow db exists after running the pipeline

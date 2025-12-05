@@ -1,17 +1,21 @@
 from clinflow.logging_utils import get_logger
+from clinflow.config import load_config
 from pathlib import Path
 import pandas as pd
 
 
-def load_raw_data(filepath=None):
+def load_dataset(filepath=None):
     # configure logger
     logger = get_logger(__name__)
 
+    # get config
+    cfg = load_config()
+
     # define path to dataset
     if filepath is None:
-        current_file = Path(__file__)
-        root = current_file.parent.parent.parent.parent
-        path = root / "data" / "raw" / "heart_disease_dataset.csv"
+        path = (
+            Path(cfg["paths"]["raw_data"]["folder"]) / cfg["paths"]["raw_data"]["file"]
+        )
     else:
         path = Path(filepath)
         if not path.exists():
@@ -24,7 +28,7 @@ def load_raw_data(filepath=None):
 
 
 def main():
-    df = load_raw_data()
+    df = load_dataset()
 
     # print head and shape
     print(f"{df.head()}\n")

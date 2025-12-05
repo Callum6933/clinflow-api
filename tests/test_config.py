@@ -1,17 +1,17 @@
 from clinflow.config import load_config
-import os
+from pathlib import Path
 
 def test_returns_dictionary():
     assert isinstance(load_config(), dict)
 
 def test_keys():
-    parsed_dict = load_config()
-    raw_path = parsed_dict["path_to_raw_data"]
-    processed_path = parsed_dict["path_to_processed_data"]
-    target_column = parsed_dict["target_column_name"]
+    cfg = load_config()
+    raw_path = Path(cfg["paths"]["raw_data"]["folder"]) / cfg["paths"]["raw_data"]["file"]
+    processed_path = Path(cfg["paths"]["processed_data"]["folder"]) / cfg["paths"]["processed_data"]["file"]
+    target_column = cfg["target_column_name"]
     
-    assert os.path.exists(raw_path)
-    assert os.path.exists(processed_path)
+    assert raw_path.exists()
+    assert processed_path.exists()
     assert target_column == "num"
 
 def test_custom_path():

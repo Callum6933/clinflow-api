@@ -1,6 +1,7 @@
-from clinflow.data.load import load_raw_data
+from clinflow.data.load import load_dataset
 from clinflow.logging_utils import get_logger
 from clinflow.config import load_config
+from pathlib import Path
 import pandas as pd
 
 
@@ -103,27 +104,30 @@ def main():
     logger = get_logger(__name__)
 
     # get df
-    dataset = load_raw_data()
+    df = load_dataset()
 
     # get cfg
-    configuration = load_config()
+    cfg = load_config()
 
     # log successful finding
     logger.info("Configuration parameters found")
 
     # clean data
-    clean = clean_data(df=dataset, cfg=configuration)
+    clean = clean_data(df, cfg)
     logger.info(f"Dataset cleaned successfully")
 
     # validate cleaned data
-    validate_data(df=clean, cfg=configuration)
+    validate_data(clean, cfg)
     logger.info("Clean dataset validated")
 
     # configure file path
-    processed_file_path = configuration["path_to_processed_data"]
+    processed_file_path = (
+        Path(cfg["paths"]["processed_data"]["folder"])
+        / cfg["paths"]["processed_data"]["file"]
+    )
 
     # write to csv
-    clean.to_csv(f"{processed_file_path}/clean.csv")
+    clean.to_csv(processed_file_path)
     logger.info(f"Clean data written to {processed_file_path}")
 
 
