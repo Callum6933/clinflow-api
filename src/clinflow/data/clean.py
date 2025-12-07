@@ -25,10 +25,6 @@ def clean_data(df, cfg):
                 f"Column {name}: {after_nulls - before_nulls} values coerced to NaN"
             )
 
-    # convert categorical to numerical codes
-    for name in cfg["categorical_column_names"]:
-        df[name] = df[name].astype("category").cat.codes
-
     # log after dropping missing values
     logger.info(f"Data shape after cleaning: {df.shape}")
     logger.info(f"Missing values after cleaning: {df.isnull().sum().sum()}")
