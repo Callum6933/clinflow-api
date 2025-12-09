@@ -4,7 +4,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, roc_auc_score, classification_report, confusion_matrix
+from sklearn.metrics import (
+    accuracy_score,
+    roc_auc_score,
+    classification_report,
+    confusion_matrix,
+)
 from clinflow.config import load_config
 from clinflow.logging_utils import get_logger
 from clinflow.data.load import load_dataset
@@ -80,14 +85,17 @@ def evaluate_model(y_test, y_pred):
 
     # create results dir if not already exists
     cfg = load_config()
-    Path(cfg['model_training']['path_to_results']['directory']).mkdir(exist_ok=True)
+    Path(cfg["model_training"]["path_to_results"]["directory"]).mkdir(exist_ok=True)
 
     # write to json file
-    file_path = Path(f"{cfg['model_training']['path_to_results']['directory']}{cfg['model_training']['path_to_results']['file']}")
+    file_path = Path(
+        f"{cfg['model_training']['path_to_results']['directory']}{cfg['model_training']['path_to_results']['file']}"
+    )
     with open(file_path, "w") as file:
         json.dump(metrics, file, indent=2, default=float)
 
     return file_path
+
 
 def main():
     # configure logger
@@ -116,9 +124,8 @@ def main():
     except Exception as e:
         logger.error(f"Model evaluation error: {e}")
         raise
-    
-    logger.info(f"Model evaluation successful. File saved to '{path}'")
 
+    logger.info(f"Model evaluation successful. File saved to '{path}'")
 
 
 if __name__ == "__main__":
