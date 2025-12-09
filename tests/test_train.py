@@ -21,10 +21,10 @@ def test_returns_expected_values():
 
     if "pipeline" not in model:
         raise ValueError("Model dict does not contain ('pipeline')")
-    if "accuracy_score" not in model:
-        raise ValueError("Model dict does not contain ('accuracy_score')")
-    if "roc_auc_score" not in model:
-        raise ValueError("Model dict does not contain ('roc_auc_score')")
+    if "y_test" not in model:
+        raise ValueError("Model dict does not contain ('y_test')")
+    if "y_pred" not in model:
+        raise ValueError("Model dict does not contain ('y_pred')")
 
 
 def test_change_config():

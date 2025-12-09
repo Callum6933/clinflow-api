@@ -47,3 +47,6 @@ model_training:
   path_to_results: 
     directory: "results/"
     file: "metrics.json"
+  path_to_model:
+    directory: "models/"
+    file: "model.joblib"
