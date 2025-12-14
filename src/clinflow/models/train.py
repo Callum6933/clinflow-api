@@ -19,6 +19,23 @@ import numpy as np
 
 
 def train_model(df, cfg):
+    """
+    Train a logistic regression classification pipeline with preprocessing.
+
+    Splits the input DataFrame into train/test sets, applies scaling to numerical
+    features and one-hot encoding to categorical features, fits a LogisticRegression
+    model, and returns the trained pipeline and test predictions.
+
+    Args:
+        df (pd.DataFrame): Input dataset containing features and target.
+        cfg (dict): Configuration dict specifying target column, feature columns,
+            train/test split parameters, and model hyperparameters.
+
+    Returns:
+        dict: Dictionary containing the fitted pipeline, test targets, and predictions
+            with keys {"pipeline", "y_test", "y_pred"}.
+    """
+
     # setup configuration parameters
     target_column_name = cfg["model_training"]["target_column_name"]
     drop_column_name = cfg["model_training"]["exclude_columns"]

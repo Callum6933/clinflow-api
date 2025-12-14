@@ -26,7 +26,7 @@ def test_save_model():
     save_model(model, "models/model.joblib")       # with filepath
 
 def test_load_model():
-    load_model()        # without filepath
+    load_model()                             # without filepath
     load_model("models/model.joblib")        # with filepath
 
 def test_compare_predictions():
@@ -37,7 +37,7 @@ def test_compare_predictions():
     path = save_model(model)
     after_model = load_model(path)
 
-    # drop target and num columns so they
+    # drop target and num columns
     X_test = df.drop(["target", "num"], axis=1)
 
     before_pred = before_model.predict(X_test)

@@ -7,6 +7,7 @@ from clinflow.logging_utils import get_logger
 from clinflow.config import load_config
 from pathlib import Path
 
+
 def main():
     import argparse
 
@@ -15,15 +16,25 @@ def main():
 
     # initialise argument parser
     parser = argparse.ArgumentParser(description="Train the clinflow risk model")
-    
+
     # add mutually exclusive arguments for input filepath
     source_group = parser.add_mutually_exclusive_group(required=True)
-    source_group.add_argument("--csv", metavar="PATH", help="Path to processed CSV file")
-    source_group.add_argument("--from-db", action="store_true", help="Load data from SQLite database")
+    source_group.add_argument(
+        "--csv", metavar="PATH", help="Path to processed CSV file"
+    )
+    source_group.add_argument(
+        "--from-db", action="store_true", help="Load data from SQLite database"
+    )
 
     # add arguments for optional arguments (output path, db query, db boolean)
     parser.add_argument("--output-path", "-op", type=str, default=None)
-    parser.add_argument("--query", "-q", type=str, default="all", help="Only use this flag with '--from-db'")
+    parser.add_argument(
+        "--query",
+        "-q",
+        type=str,
+        default="all",
+        help="Only use this flag with '--from-db'",
+    )
     # parse arguments
     args = parser.parse_args()
     logger.info("Command line arguments parsed")
@@ -58,6 +69,7 @@ def main():
     logger.info(f"Model saved to '{path}'")
     logger.info("Pipeline completed successfully")
     return
+
 
 if __name__ == "__main__":
     main()
