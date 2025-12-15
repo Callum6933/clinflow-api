@@ -56,8 +56,8 @@ def query_patients(preset):
 
     # connect to SQL databse
     database_path = (
-        Path(cfg['paths']['database_path']['folder'])
-        / cfg['paths']['database_path']['file']
+        Path(cfg["paths"]["database_path"]["folder"])
+        / cfg["paths"]["database_path"]["file"]
     )
     with sqlite3.connect(database_path) as con:
         # build SQL query from presets

@@ -75,6 +75,7 @@ def print_metrics(path=None):
         label = "No heart disease" if severity == 0 else f"Severity {severity}"
         logger.info(f"  {label}: {pct}%")
 
+
 def main():
     # parse command line arguments
     file_path = parse_cli_args()
