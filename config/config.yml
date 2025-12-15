@@ -8,6 +8,9 @@ paths:
   database_path:
     folder: "data/"
     file: "clinflow.db"
+  logging:
+    folder: "logs/"
+    file: "clinflow.log"
 
 target_column_name: "num"
 missing_value_strategy: "drop"
