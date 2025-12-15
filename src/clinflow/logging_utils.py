@@ -44,12 +44,12 @@ def get_logger(name):
         - All loggers created by this function share the same configuration
     """
     cfg = load_config()
-    
+
     # create logs directory if it doesn't exist
     logs_dir = Path(cfg["paths"]["logging"]["folder"])
     logs_file = Path(cfg["paths"]["logging"]["file"])
     logs_filepath = logs_dir / logs_file
-    
+
     logs_dir.mkdir(exist_ok=True, parents=True)
 
     # create logger
